@@ -11,11 +11,11 @@
     <meta content="Superior Roof Washes" property="og:title">
 
     
-        <meta content="https://landing-page-app-hero-images.s3.amazonaws.com/media/VR8I7MPFRPF43FHIKSGSP35PIDDGZDLUYVY9GKHZ.jpeg" property="og:image">
+        <meta content="https://landing-page-app-hero-images.s3.amazonaws.com/media/GE09U5LU9YKZ3CHL4KKHUTR2A9K7SAO48HUWRSTI.jpeg" property="og:image">
         <meta content="Superior Roof Washes" property="twitter:title">
-        <meta content="https://landing-page-app-hero-images.s3.amazonaws.com/media/VR8I7MPFRPF43FHIKSGSP35PIDDGZDLUYVY9GKHZ.jpeg" property="twitter:image">
-        <link href="https://landing-page-app-hero-images.s3.amazonaws.com/media/VR8I7MPFRPF43FHIKSGSP35PIDDGZDLUYVY9GKHZ.jpeg" rel="shortcut icon" type="image/x-icon">
-        <link href="https://landing-page-app-hero-images.s3.amazonaws.com/media/VR8I7MPFRPF43FHIKSGSP35PIDDGZDLUYVY9GKHZ.jpeg" rel="apple-touch-icon">     
+        <meta content="https://landing-page-app-hero-images.s3.amazonaws.com/media/GE09U5LU9YKZ3CHL4KKHUTR2A9K7SAO48HUWRSTI.jpeg" property="twitter:image">
+        <link href="https://landing-page-app-hero-images.s3.amazonaws.com/media/GE09U5LU9YKZ3CHL4KKHUTR2A9K7SAO48HUWRSTI.jpeg" rel="shortcut icon" type="image/x-icon">
+        <link href="https://landing-page-app-hero-images.s3.amazonaws.com/media/GE09U5LU9YKZ3CHL4KKHUTR2A9K7SAO48HUWRSTI.jpeg" rel="apple-touch-icon">     
     
     <title>
          
@@ -43,11 +43,8 @@
        
      
     
-    
     <link href="https://prophone.herokuapp.com/staticfiles/landing_page_gen/style.css" rel="stylesheet">
-    
     <link href="https://prophone.herokuapp.com/staticfiles/landing_page_gen/render.css" rel="stylesheet">
-     <!-- <script src="/staticfiles/landing_page_gen/render.js"></script>   -->
     <script src="https://prophone.herokuapp.com/staticfiles/landing_page_gen/render.js"></script> 
 </head>
 
@@ -57,10 +54,10 @@
     
 
 <div class="fixed z-40 w-full lg:h-25 lg:py-4 items-start justify-start  bg-white text-gray-700  dark-mode:text-gray-200 dark-mode:bg-gray-800">
-  <div x-data="{ open: false }" class="flex flex-col lg:flex-r max-w-screen-xl px-4 mx-auto lg:items-center lg:justify-between lg:flex-row lg:px-6 lg:px-8">
+  <div x-data="{ open: false,buttonDisabled: false }" class="flex flex-col lg:flex-r max-w-screen-xl px-4 mx-auto lg:items-center lg:justify-between lg:flex-row lg:px-6 lg:px-8">
     <div class="py-4 flex flex-row items-center justify-between">
       
-        <a href= " index "> <img class="h-16 w-auto relative" src="https://landing-page-app-hero-images.s3.amazonaws.com/media/VR8I7MPFRPF43FHIKSGSP35PIDDGZDLUYVY9GKHZ.jpeg" alt="Superior Roof Washes logo"> </a>
+        <a href= " index "> <img class="h-16 w-auto relative" src="https://landing-page-app-hero-images.s3.amazonaws.com/media/GE09U5LU9YKZ3CHL4KKHUTR2A9K7SAO48HUWRSTI.jpeg" alt="Superior Roof Washes logo"> </a>
       
       <button class="lg:hidden rounded-lg focus:outline-none focus:shadow-outline" @click="open = !open">
         <svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6">
@@ -108,7 +105,7 @@
       
           <a target = "_blank"  x-on:click.prevent="open = true" class="" href="">Send us a Text</a>
             <div x-show.transition.opacity="open" class="transform-none p-4 fixed h-screen w-screen flex justify-center items-center bottom-0 right-0 bg-black bg-opacity-75 z-50">
-    <form x-on:click.away="open = false" x-show.transition="open" class=" text-black max-w-3xl max-h-full h-auto p-8 py-10 overflow-auto bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7 mt-16 md:mt-0 md:w-2/5 z-50">
+    <form  x-data="{ buttonDisabled: false }" x-on:click.away="open = false" x-show.transition="open" class=" text-black max-w-3xl max-h-full h-auto p-8 py-10 overflow-auto bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7 mt-16 md:mt-0 md:w-2/5 z-50">
             <h3 class="mb-6 text-2xl font-medium text-black text-center">Send us a Text</h3>
         <div class="block mb-4 border border-gray-200 rounded-lg">
             <input type="text" name="first-name" id="0-first-name" class="block w-full px-4 py-3 border-2 border-transparent rounded-lg focus:border-blue-500 focus:outline-none" placeholder="First Name">
@@ -123,14 +120,18 @@
             <textarea name="message" cols="5" id="0-message" class="block w-full px-4 py-3 border-2 border-transparent rounded-lg focus:border-blue-500 focus:outline-none" placeholder="What is your message?"></textarea>
         </div>
         <div class="block">
-        <button type="button" 
+        <button
+
+                x-on:click.debounce.500ms="buttonDisabled = true ;send_sms(0, 'Superior-Roof-Washes')"
+                 x-bind:disabled="buttonDisabled"
+                type="button"
          
             onMouseOver="this.style.backgroundColor='#AC2631'; this.style.color='#8B8B8B' "
             onMouseOut="this.style.backgroundColor='#8B8B8B'; this.style.color='white'"
             style="background-color:#8B8B8B; color:white"               
 
          
-        onclick= "send_sms(0, 'Superior-Roof-Washes')" 
+
         class="w-full px-3 py-4 font-bold font-lg text-white  bg-black-300 text-white hover:bg-black hover:text-black-300 rounded-lg">Send</button> 
         </div>           
 
@@ -153,20 +154,6 @@ class="flex relative flex-col w-full  bg-blue-400 text-white  lg:flex-row lg:fle
             </h2>
             
             <h1 class="pt-5 lg:text-xl text-center lg:text-left">
-                <!--  
-                    The best pressure washing &amp; soft washing in
-                     
-                         
-                            
-                                Lucedale,
-                             
-                         
-                             
-                                Mobile & surrounding areas.
-                             
-                         
-                     
-                  -->
                 Exceptional, Professional Cleaning Service. You Are Our Priority.
             </h1>
             
@@ -198,7 +185,7 @@ class="flex relative flex-col w-full  bg-blue-400 text-white  lg:flex-row lg:fle
 </button>
 
         <div x-show.transition.opacity="open" class="transform-none p-4 fixed h-screen w-screen flex justify-center items-center bottom-0 right-0 bg-black bg-opacity-75 z-50">
-    <form x-on:click.away="open = false" x-show.transition="open" class=" text-black max-w-3xl max-h-full h-auto p-8 py-10 overflow-auto bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7 mt-16 md:mt-0 md:w-2/5 z-50">
+    <form  x-data="{ buttonDisabled: false }" x-on:click.away="open = false" x-show.transition="open" class=" text-black max-w-3xl max-h-full h-auto p-8 py-10 overflow-auto bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7 mt-16 md:mt-0 md:w-2/5 z-50">
             <h3 class="mb-6 text-2xl font-medium text-black text-center">Send us a Text</h3>
         <div class="block mb-4 border border-gray-200 rounded-lg">
             <input type="text" name="first-name" id="1-first-name" class="block w-full px-4 py-3 border-2 border-transparent rounded-lg focus:border-blue-500 focus:outline-none" placeholder="First Name">
@@ -213,14 +200,18 @@ class="flex relative flex-col w-full  bg-blue-400 text-white  lg:flex-row lg:fle
             <textarea name="message" cols="5" id="1-message" class="block w-full px-4 py-3 border-2 border-transparent rounded-lg focus:border-blue-500 focus:outline-none" placeholder="What is your message?"></textarea>
         </div>
         <div class="block">
-        <button type="button" 
+        <button
+
+                x-on:click.debounce.500ms="buttonDisabled = true ;send_sms(1, 'Superior-Roof-Washes')"
+                 x-bind:disabled="buttonDisabled"
+                type="button"
          
             onMouseOver="this.style.backgroundColor='#AC2631'; this.style.color='#8B8B8B' "
             onMouseOut="this.style.backgroundColor='#8B8B8B'; this.style.color='white'"
             style="background-color:#8B8B8B; color:white"               
 
          
-        onclick= "send_sms(1, 'Superior-Roof-Washes')" 
+
         class="w-full px-3 py-4 font-bold font-lg text-white  bg-black-300 text-white hover:bg-black hover:text-black-300 rounded-lg">Send</button> 
         </div>           
 
@@ -249,7 +240,7 @@ class="flex relative flex-col w-full  bg-blue-400 text-white  lg:flex-row lg:fle
 </button>
 
         <div x-show.transition.opacity="open" class="transform-none p-4 fixed h-screen w-screen flex justify-center items-center bottom-0 right-0 bg-black bg-opacity-75 z-50">
-    <form x-on:click.away="open = false" x-show.transition="open" class=" text-black max-w-3xl max-h-full h-auto p-8 py-10 overflow-auto bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7 mt-16 md:mt-0 md:w-2/5 z-50">
+    <form  x-data="{ buttonDisabled: false }" x-on:click.away="open = false" x-show.transition="open" class=" text-black max-w-3xl max-h-full h-auto p-8 py-10 overflow-auto bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7 mt-16 md:mt-0 md:w-2/5 z-50">
             <h3 class="mb-6 text-2xl font-medium text-black text-center">Send us a Text</h3>
         <div class="block mb-4 border border-gray-200 rounded-lg">
             <input type="text" name="first-name" id="2-first-name" class="block w-full px-4 py-3 border-2 border-transparent rounded-lg focus:border-blue-500 focus:outline-none" placeholder="First Name">
@@ -264,14 +255,18 @@ class="flex relative flex-col w-full  bg-blue-400 text-white  lg:flex-row lg:fle
             <textarea name="message" cols="5" id="2-message" class="block w-full px-4 py-3 border-2 border-transparent rounded-lg focus:border-blue-500 focus:outline-none" placeholder="What is your message?"></textarea>
         </div>
         <div class="block">
-        <button type="button" 
+        <button
+
+                x-on:click.debounce.500ms="buttonDisabled = true ;send_sms(2, 'Superior-Roof-Washes')"
+                 x-bind:disabled="buttonDisabled"
+                type="button"
          
             onMouseOver="this.style.backgroundColor='#AC2631'; this.style.color='#8B8B8B' "
             onMouseOut="this.style.backgroundColor='#8B8B8B'; this.style.color='white'"
             style="background-color:#8B8B8B; color:white"               
 
          
-        onclick= "send_sms(2, 'Superior-Roof-Washes')" 
+
         class="w-full px-3 py-4 font-bold font-lg text-white  bg-black-300 text-white hover:bg-black hover:text-black-300 rounded-lg">Send</button> 
         </div>           
 
@@ -287,7 +282,7 @@ class="flex relative flex-col w-full  bg-blue-400 text-white  lg:flex-row lg:fle
     <div class="relative order-first lg:order-last block lg:w-1/2 ">
 
     
-        <video class="object-cover w-full lg:absolute h-80 lg:h-full" autoplay loop playsinline >
+        <video class="object-cover w-full lg:absolute h-80 lg:h-full" autoplay loop playsinline muted >
         <source src="https://landing-page-app-hero-images.s3.amazonaws.com/media/B33SS415JMV3BYAW6WM30HJQD1LYYAFD77FYYBQR.mp4" type = "video/mp4" >
         </video>
     
@@ -327,7 +322,6 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
         </div>
 
         
-        
         <br>
     </div>
 
@@ -341,7 +335,6 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
         </div>
 
         
-        
         <br>
     </div>
 
@@ -354,7 +347,6 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
             Emergency Services
         </div>
 
-        
         
         <br>
     </div>
@@ -370,7 +362,6 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
         </div>
 
         
-        
         <br>
     </div>
 
@@ -383,7 +374,6 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
             Locally Owned
         </div>
 
-        
         
         <br>
     </div>
@@ -398,7 +388,6 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
             Licensed
         </div>
 
-        
         
         <br>
     </div>
@@ -471,7 +460,7 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
 </button>
 
         <div x-show.transition.opacity="open" class="transform-none p-4 fixed h-screen w-screen flex justify-center items-center bottom-0 right-0 bg-black bg-opacity-75 z-50">
-    <form x-on:click.away="open = false" x-show.transition="open" class=" text-black max-w-3xl max-h-full h-auto p-8 py-10 overflow-auto bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7 mt-16 md:mt-0 md:w-2/5 z-50">
+    <form  x-data="{ buttonDisabled: false }" x-on:click.away="open = false" x-show.transition="open" class=" text-black max-w-3xl max-h-full h-auto p-8 py-10 overflow-auto bg-white border-b-2 border-gray-300 rounded-lg shadow-2xl px-7 mt-16 md:mt-0 md:w-2/5 z-50">
             <h3 class="mb-6 text-2xl font-medium text-black text-center">Send us a Text</h3>
         <div class="block mb-4 border border-gray-200 rounded-lg">
             <input type="text" name="first-name" id="2-first-name" class="block w-full px-4 py-3 border-2 border-transparent rounded-lg focus:border-blue-500 focus:outline-none" placeholder="First Name">
@@ -486,14 +475,18 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
             <textarea name="message" cols="5" id="2-message" class="block w-full px-4 py-3 border-2 border-transparent rounded-lg focus:border-blue-500 focus:outline-none" placeholder="What is your message?"></textarea>
         </div>
         <div class="block">
-        <button type="button" 
+        <button
+
+                x-on:click.debounce.500ms="buttonDisabled = true ;send_sms(2, 'Superior-Roof-Washes')"
+                 x-bind:disabled="buttonDisabled"
+                type="button"
          
             onMouseOver="this.style.backgroundColor='#AC2631'; this.style.color='#8B8B8B' "
             onMouseOut="this.style.backgroundColor='#8B8B8B'; this.style.color='white'"
             style="background-color:#8B8B8B; color:white"               
 
          
-        onclick= "send_sms(2, 'Superior-Roof-Washes')" 
+
         class="w-full px-3 py-4 font-bold font-lg text-white  bg-black-300 text-white hover:bg-black hover:text-black-300 rounded-lg">Send</button> 
         </div>           
 
@@ -502,7 +495,6 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
     </div>
 
     
-    
     <section  style= "background-color:#AC2631"   id= "services" class="lg:mt-0 relative w-full px-8 font-sans leading-6  bg-blue-400 border-0 border-blue-200 text-white border-solid ">
         <div class="flex flex-col items-center max-w-6xl px-8 py-20 mx-auto leading-6 border-solid md:items-stretch md:justify-center md:py-24  mt-24 ">
             
@@ -510,7 +502,6 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
                 Our Services
             </h2>
             <h2  style= "color:#8B8B8B"  class="w-full lg:pr-9 max-w-3xl mx-0 mx-auto mt-4 mb-0 font-sans text-sm font-medium leading-relaxed text-center text-black-300 border-0 border-blue-200 lg:text-lg md:text-base">
-                <!-- What we are best at  - expert  pressure washing &amp; soft washing  -->
                 We provide a variety of pressure washing &amp; soft washing services!
             </h2>
 
@@ -520,10 +511,8 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
                 <div class="max-w-xs col-span-4 font-sans rounded-lg border border-blue-200 ">
                         <a href= "services">
                             <div class="box-border flex flex-col h-full md:py-8 leading-6 border-solid rounded-lg bg-white border-blue-200">
-                                    
                         <div  class="font-sans text-center border-blue-200 flex justify-left">
                             <i  style="color:#8B8B8B"  class="fas fa-check-square fa-3x pl-5 pr-5 text-black-300"></i>
-                            <!-- <i  style="color:#8B8B8B"  class="fal fa-check fa-3x pl-5 pr-5 text-black-300"></i> -->
                             <div style="display:flex; justify-content: center; align-items:center">
                                 <h3  class="box-border text-lg font-bold leading-none tracking-wider border-solid text-gray-900">Roof Washing</h3>
                             </div>
@@ -535,10 +524,8 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
                 <div class="max-w-xs col-span-4 font-sans rounded-lg border border-blue-200 ">
                         <a href= "services">
                             <div class="box-border flex flex-col h-full md:py-8 leading-6 border-solid rounded-lg bg-white border-blue-200">
-                                    
                         <div  class="font-sans text-center border-blue-200 flex justify-left">
                             <i  style="color:#8B8B8B"  class="fas fa-check-square fa-3x pl-5 pr-5 text-black-300"></i>
-                            <!-- <i  style="color:#8B8B8B"  class="fal fa-check fa-3x pl-5 pr-5 text-black-300"></i> -->
                             <div style="display:flex; justify-content: center; align-items:center">
                                 <h3  class="box-border text-lg font-bold leading-none tracking-wider border-solid text-gray-900">Home Softwash</h3>
                             </div>
@@ -550,10 +537,8 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
                 <div class="max-w-xs col-span-4 font-sans rounded-lg border border-blue-200 ">
                         <a href= "services">
                             <div class="box-border flex flex-col h-full md:py-8 leading-6 border-solid rounded-lg bg-white border-blue-200">
-                                    
                         <div  class="font-sans text-center border-blue-200 flex justify-left">
                             <i  style="color:#8B8B8B"  class="fas fa-check-square fa-3x pl-5 pr-5 text-black-300"></i>
-                            <!-- <i  style="color:#8B8B8B"  class="fal fa-check fa-3x pl-5 pr-5 text-black-300"></i> -->
                             <div style="display:flex; justify-content: center; align-items:center">
                                 <h3  class="box-border text-lg font-bold leading-none tracking-wider border-solid text-gray-900">Decks & Patios</h3>
                             </div>
@@ -565,10 +550,8 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
                 <div class="max-w-xs col-span-4 font-sans rounded-lg border border-blue-200 ">
                         <a href= "services">
                             <div class="box-border flex flex-col h-full md:py-8 leading-6 border-solid rounded-lg bg-white border-blue-200">
-                                    
                         <div  class="font-sans text-center border-blue-200 flex justify-left">
                             <i  style="color:#8B8B8B"  class="fas fa-check-square fa-3x pl-5 pr-5 text-black-300"></i>
-                            <!-- <i  style="color:#8B8B8B"  class="fal fa-check fa-3x pl-5 pr-5 text-black-300"></i> -->
                             <div style="display:flex; justify-content: center; align-items:center">
                                 <h3  class="box-border text-lg font-bold leading-none tracking-wider border-solid text-gray-900">Driveway & Sidewalk Cleaning</h3>
                             </div>
@@ -580,10 +563,8 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
                 <div class="max-w-xs col-span-4 font-sans rounded-lg border border-blue-200 ">
                         <a href= "services">
                             <div class="box-border flex flex-col h-full md:py-8 leading-6 border-solid rounded-lg bg-white border-blue-200">
-                                    
                         <div  class="font-sans text-center border-blue-200 flex justify-left">
                             <i  style="color:#8B8B8B"  class="fas fa-check-square fa-3x pl-5 pr-5 text-black-300"></i>
-                            <!-- <i  style="color:#8B8B8B"  class="fal fa-check fa-3x pl-5 pr-5 text-black-300"></i> -->
                             <div style="display:flex; justify-content: center; align-items:center">
                                 <h3  class="box-border text-lg font-bold leading-none tracking-wider border-solid text-gray-900">Outdoor Furniture</h3>
                             </div>
@@ -595,10 +576,8 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
                 <div class="max-w-xs col-span-4 font-sans rounded-lg border border-blue-200 ">
                         <a href= "services">
                             <div class="box-border flex flex-col h-full md:py-8 leading-6 border-solid rounded-lg bg-white border-blue-200">
-                                    
                         <div  class="font-sans text-center border-blue-200 flex justify-left">
                             <i  style="color:#8B8B8B"  class="fas fa-check-square fa-3x pl-5 pr-5 text-black-300"></i>
-                            <!-- <i  style="color:#8B8B8B"  class="fal fa-check fa-3x pl-5 pr-5 text-black-300"></i> -->
                             <div style="display:flex; justify-content: center; align-items:center">
                                 <h3  class="box-border text-lg font-bold leading-none tracking-wider border-solid text-gray-900">Hardscape Cleaning</h3>
                             </div>
@@ -610,10 +589,8 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
                 <div class="max-w-xs col-span-4 font-sans rounded-lg border border-blue-200 ">
                         <a href= "services">
                             <div class="box-border flex flex-col h-full md:py-8 leading-6 border-solid rounded-lg bg-white border-blue-200">
-                                    
                         <div  class="font-sans text-center border-blue-200 flex justify-left">
                             <i  style="color:#8B8B8B"  class="fas fa-check-square fa-3x pl-5 pr-5 text-black-300"></i>
-                            <!-- <i  style="color:#8B8B8B"  class="fal fa-check fa-3x pl-5 pr-5 text-black-300"></i> -->
                             <div style="display:flex; justify-content: center; align-items:center">
                                 <h3  class="box-border text-lg font-bold leading-none tracking-wider border-solid text-gray-900">RV & Camper Washing</h3>
                             </div>
@@ -625,7 +602,6 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
             </div>
         </div>
     </section>
-    <!-- </a> -->
 
     
 
@@ -655,16 +631,111 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
 
     <h2  style= "color:#AC2631"   class="mb-5 text-3xl  mx-auto text-center font-extrabold leading-none sm:text-4xl lg:text-7xl"> Service Areas </h2>
     <h2  style= "color:#8B8B8B"  class="my-3 mb-10  text-xl font-medium text-black-300 text-center"> Proudly Serving   Lucedale,    Mobile & Surrounding Areas   </h2>
-    <div style="height:500px; width:100%;" id="map"></div>
 
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSw3qRocbSgfTrtxZbCsTjSHZaaJuUXF4&callback=initMap&libraries=&v=weekly"
-      async
-    ></script> 
+    <div class="relative col-span-3 row-start-1 mt-6 lg:mt-0 lg:col-start-1">
+        <div aria-hidden="true" x-cloak x-data="{ shown: false }" x-intersect.half="shown = true" class="hidden lg:block">
+            <svg
+                x-show="shown"
+                x-transition:enter="transition duration-1000"
+                x-transition:enter-start="transform translate-x-full opacity-0"
+                x-transition:enter-end="transform translate-x-0 opacity-100"
+                x-transition:leave="transition duration-1000 opacity-100"
+                x-transition:leave-start="transform opacity-0"
+                x-transition:leave-end="transform translate-x-full"
+                class="absolute top-0 -right-48"
+                width="404"
+                height="404"
+                fill="none"
+                viewBox="0 0 404 404"
+            >
+                <defs>
+                    <pattern id="85737c0e-0916-41d7-917f-596dc7edfa27" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                    </pattern>
+                </defs>
+                <rect width="404" height="404" fill="url(#85737c0e-0916-41d7-917f-596dc7edfa27)" />
+            </svg>
+        </div>
+        <div class="relative h-[500px] w-full rounded-2xl shadow-xl overflow-hidden">
+            <div class="w-full h-full bg-gray-400">
+                <div style="height:500px; width:100%;" id="map"></div>
+                <script >
+                    async function coordinate(url) {
+const res = await fetch(url)
+const coordinates = await res.json()
+return [
+    coordinates.results[0].geometry.location.lat,
+    coordinates.results[0].geometry.location.lng,
+]
+}
+async function initMap() {
+let radius = document.querySelector('#radius').innerText
+let city = document.querySelector('#city').innerText
+let state = document.querySelector('#state').innerText
+console.log('radius - city ', city)
+console.log('radius - radius ', state)
+let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${city}+${state}&key=AIzaSyDuL9weltDy_kOcISLRucx5-JSFsezZpVE`
 
+let coordinates = await coordinate(url)
 
-    
+const map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 8,
+    center: {
+        lat: coordinates[0],
+        lng: coordinates[1],
+    },
+    mapTypeId: 'terrain',
+})
+
+const cityCircle = new google.maps.Circle({
+    strokeColor: '#FF0000',
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: '#FF0000',
+    fillOpacity: 0.35,
+    map,
+    animation: google.maps.Animation.DROP,
+    center: {
+        lat: coordinates[0],
+        lng: coordinates[1],
+    },
+    radius: radius * 1638,
+})
+}
+
+const target = document.querySelector('#map')
+
+const handleIntersection = (entries) => {
+console.log("it got here")
+entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+        const script = document.createElement('script')
+        script.type = 'text/javascript'
+        script.src =
+            'https://maps.googleapis.com/maps/api/js?key=AIzaSyDSw3qRocbSgfTrtxZbCsTjSHZaaJuUXF4&callback=initMap&libraries=&v=weekly'
+        document.body.appendChild(script)
+        console.log("it got there")
+        observer.unobserve(entry.target)
+    }
+})
+}
+const observer = new IntersectionObserver(handleIntersection)
+observer.observe(target)
+            
+                </script>
+<!--                    <script-->
+<!--                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSw3qRocbSgfTrtxZbCsTjSHZaaJuUXF4&callback=initMap&libraries=&v=weekly"-->
+<!--                    async-->
+<!--                    defer-->
+<!--                  ></script> -->
+          
+            <span class="sr-only" id="city">Lucedale</span>
+            <span class="sr-only" id="state">MS</span>
+            <span class="sr-only" id="radius">50</span>
+            </div>
+        </div>
+    </div>
+
     </div>
 </section>
 
@@ -672,10 +743,8 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
     
 
 <section  style= "background-color:#AC2631"   class="py-10 bg-blue-400">
-    
         <div class="flex flex-col justify-around text-center md:flex-row">
             <p class="order-last text-sm leading-tight text-black-300 md:order-first"> Crafted with <a  href="https://www.prophone.com/prosite" class="  text-white ">ProPhone</a>. Built with ❤️ by our team. </p>
-             
             <ul class="flex flex-row flex-wrap text-center justify-center pb-3 lg:-ml-4 lg:-mr-4 text-sm">
                 <li> <a  style= "color:#8B8B8B"  href="#about" class="px-2 md:px-4 text-black-300 hover:text-white">About Us</a> </li>
                 
@@ -694,7 +763,9 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
                 
                 <li> <a  style= "color:#8B8B8B"  href="#find-us" class=" px-2 md:px-4 text-black-300 hover:text-white">Service Areas</a></li>
                 
-                <li> <a  style= "color:#8B8B8B"  href='sitemap.xml' class=" px-2 md:px-4 text-black-300 hover:text-white">Sitemap</a></li>
+                
+                <li> <a  style= "color:#8B8B8B"  href="superiorroofwashes.com/sitemap.xml" class=" px-2 md:px-4 text-black-300 hover:text-white">Sitemap</a></li>
+                
             </ul>
         </div>
     </div>
@@ -702,7 +773,6 @@ class="flex flex-col flex-grow w-full overflow-hidden  lg:flex-row sm:mx-auto  b
 </div> 
 
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
-  
 
 </body>
 </html>
